@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "description": "An example of the E2E Test Framework using fictional ARN data.",
+  "test_folder": "arn_inline_data_2000",
+  "queries": [
+    {
+      "test_query_id": "arn-inline-query",
+      "result_stream_handler": {
+        "kind": "RedisStream",
+        "host": "drasi-redis",
+        "port": 6379,
+        "stream_name": "arn-inline-results",
+        "process_old_entries": false
+      },
+      "stop_trigger": {
+        "kind": "RecordSequenceNumber",
+        "record_sequence_number": 2000
+      }
+    }
+  ],
+  "reactions": [],
+  "sources": [
+    {
+      "test_source_id": "arn-db",
+      "bootstrap_data_generator": {
+        "kind": "Script",
+        "script_file_folder": "bootstrap_scripts",
+        "time_mode": "recorded"
+      },
+      "source_change_dispatchers": [   
+        {
+            "kind": "Dapr",
+            "host" : "127.0.0.1",
+            "port" : 3500,
+            "pubsub_name" : "drasi-pubsub"    
+        }
+      ],
+      "source_change_generator": {
+        "kind": "Script",
+        "script_file_folder": "source_change_scripts",
+        "spacing_mode": "none",
+        "time_mode": "recorded"
+      },
+      "subscribers": [
+        { "node_id": "default", "query_id": "arn-inline-query" }
+      ]
+    }
+  ]
+}

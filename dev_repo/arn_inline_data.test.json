@@ -18,10 +18,10 @@
       }
     }
   ],
-  "reactions": [],
   "sources": [
     {
       "test_source_id": "arn-db",
+      "kind": "Script",
       "bootstrap_data_generator": {
         "kind": "Script",
         "script_file_folder": "bootstrap_scripts",

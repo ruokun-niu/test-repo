@@ -1,7 +1,7 @@
 {
   "version": 1,
   "description": "An example of the E2E Test Framework using fictional ARN data.",
-  "test_folder": "arn_inline_data_2000",
+  "test_folder": "arn_inline_data_2000/test-2000-changes",
   "queries": [
     {
       "test_query_id": "arn-inline-query",
